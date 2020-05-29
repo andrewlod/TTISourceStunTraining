@@ -229,7 +229,16 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         if self.stunnedCogsPanel == None:
             self.stunnedCogsPanel = DirectFrame(frameColor=(0.5,0.5,0.5,1),frameSize=(0.5,1,1.25,-0.45),pos=(1,1,-0.5))
             self.stunnedCogsLabel = DirectLabel(text="Stunned cogs", text_fg=VBase4(1, 1, 1, 1), text_align=TextNode.ACenter, relief=None, pos=(1.7,1,0.68), scale=0.05)
-
+        else:
+            self.stunnedCogsPanel.remove()
+            self.stunnedCogsLabel.remove()
+            self.stunnedCogsPanel = DirectFrame(frameColor=(0.5, 0.5, 0.5, 1), frameSize=(0.5, 1, 1.25, -0.45),
+                                                pos=(1, 1, -0.5))
+            self.stunnedCogsLabel = DirectLabel(text="Stunned cogs", text_fg=VBase4(1, 1, 1, 1),
+                                                text_align=TextNode.ACenter, relief=None, pos=(1.7, 1, 0.68),
+                                                scale=0.05)
+            for cog in self.stunnedCogsModels:
+                cog.removeNode()
         self.stunnedCogsModels = []
         index = 0
         for cog in cogs:
