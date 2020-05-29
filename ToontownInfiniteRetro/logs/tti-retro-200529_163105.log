@@ -10,10 +10,4 @@ ToontownStart: Loading default gui sounds
 ToontownStart: serverVersion:  tti-retro-dev
 Preloading avatars...
 Done preloading avatars.
-{401000001: <toontown.distributed.ToontownDistrict.ToontownDistrict instance at 0x29718418>}
-entering active SC menu
-local
-1
-Reading DNA file... phase_4/dna/storage.dna
-Reading DNA file... phase_3.5/dna/storage_interior.dna
-ignoring InputState-forward
+{401000001: <toontown.distributed.ToontownDistrict.ToontownDistrict instance at 0x2E3C5490>}
