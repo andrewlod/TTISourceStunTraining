@@ -1,6 +1,7 @@
 from direct.showbase.ShowBase import *
 from direct.interval.IntervalGlobal import *
 from toontown.battle.BattleProps import *
+from toontown.suit import Suit
 from direct.distributed.ClockDelta import *
 from direct.showbase.PythonUtil import Functor
 from direct.showbase.PythonUtil import StackTrace
@@ -35,6 +36,16 @@ from otp.nametag.NametagConstants import *
 from otp.nametag import NametagGlobals
 OneBossCog = None
 
+cogsScaleDict = {
+    'b':0.055,
+    'dt':0.07,
+    'ac':0.055,
+    'bs':0.04,
+    'sd':0.07,
+    'le':0.12,
+    'bw':0.085
+}
+
 class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLawbotBoss')
     debugPositions = False
@@ -57,6 +68,11 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.insidesBNodePath = None
         self.strafeInterval = None
         self.onscreenMessage = None
+        #===========================================================
+        self.stunnedCogsPanel = None #DirectFrame(frameColor=(0.5,0.5,0.5,1),frameSize=(0.5,1,1.2,-0.2),pos=(1,1,-0.5))
+        self.stunnedCogsLabel = None
+        self.stunnedCogsModels = []
+        #===========================================================
         self.bossMaxDamage = ToontownGlobals.LawbotBossMaxDamage
         self.elevatorType = ElevatorConstants.ELEVATOR_CJ
         self.gavels = {}
@@ -208,6 +224,37 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         stateName = self.state
         if stateName == 'Elevator':
             self.placeToonInElevator(toon)
+
+    def loadCogs(self, cogs):
+        if self.stunnedCogsPanel == None:
+            self.stunnedCogsPanel = DirectFrame(frameColor=(0.5,0.5,0.5,1),frameSize=(0.5,1,1.25,-0.45),pos=(1,1,-0.5))
+            self.stunnedCogsLabel = DirectLabel(text="Stunned cogs", text_fg=VBase4(1, 1, 1, 1), text_align=TextNode.ACenter, relief=None, pos=(1.7,1,0.68), scale=0.05)
+
+        self.stunnedCogsModels = []
+        index = 0
+        for cog in cogs:
+            head = Suit.attachSuitHead(self.stunnedCogsPanel, cog)
+            head.setPos(0.7,0,1-0.15*index)
+            scale = cogsScaleDict[cog]
+            head.setScale(scale,scale,scale)
+            head.setTransparency(TransparencyAttrib.MAlpha)
+            head.setColor(0.5,0.5,0.5)
+            head.setAlphaScale(0.3)
+            self.stunnedCogsModels.append(head)
+            index += 1
+
+    def setStunnedCogs(self, stunnedCogs):
+        index = 0
+        for cog in stunnedCogs:
+            if cog == 1:
+                self.stunnedCogsModels[index].setColor(1,1,1)
+                self.stunnedCogsModels[index].setAlphaScale(1.0)
+            else:
+                self.stunnedCogsModels[index].setColor(0.5,0.5,0.5)
+                self.stunnedCogsModels[index].setAlphaScale(0.5)
+            index += 1
+
+        #self.__showOnscreenMessage("Stunned cogs: " + cogs)
 
     def setLawyerIds(self, lawyerIds):
         self.lawyers = []
@@ -961,6 +1008,9 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.bossMaxDamage = ToontownGlobals.LawbotBossMaxDamage
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
         self.__showWitnessToon()
+        if self.stunnedCogsPanel == None:
+            self.stunnedCogsPanel = DirectFrame(frameColor=(0.5,0.5,0.5,1),frameSize=(0.5,1,1.4,-0.4),pos=(1,1,-0.5))
+            self.stunnedCogsLabel = DirectLabel(text="Stunned cogs", text_fg=VBase4(1, 1, 1, 1), text_align=TextNode.ACenter, relief=None, pos=(1.7,1,0.85), scale=0.05)
         #diffSettings = ToontownGlobals.LawbotBossDifficultySettings[self.battleDifficulty]
         #if diffSettings[4]:
             #localAvatar.chatMgr.chatInputSpeedChat.removeCJMenu()
@@ -994,6 +1044,13 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.unstickBoss()
         taskName = 'RecoverBossDamage'
         taskMgr.remove(taskName)
+        self.stunnedCogsLabel.remove()
+        self.stunnedCogsLabel = None
+        self.stunnedCogsPanel.remove()
+        self.stunnedCogsPanel = None
+        for cog in self.stunnedCogsModels:
+            cog.removeNode()
+        self.stunnedCogsModels = []
         self.battleThreeMusicTime = self.battleThreeMusic.getTime()
         self.battleThreeMusic.stop()
         return
@@ -1808,6 +1865,7 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             self.bonusTimer.posInTopRightCorner()
         self.bonusTimer.show()
         self.bonusTimer.countdown(ToontownGlobals.LawbotBossBonusDuration, self.hideBonusTimer)
+        self.__showOnscreenMessage("All cogs stunned!")
 
     def setAttackCode(self, attackCode, avId = 0):
         DistributedBossCog.DistributedBossCog.setAttackCode(self, attackCode, avId)

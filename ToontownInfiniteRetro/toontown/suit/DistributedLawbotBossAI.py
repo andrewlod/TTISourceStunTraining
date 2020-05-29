@@ -740,6 +740,7 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
         self.takeAwayPies()
 
     def enterDefeat(self):
+        self.exitIntroduction()
         self.b_setState('PrepareBattleThree')
         return
         self.resetBattles()
@@ -791,15 +792,20 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
          'sd',
          'le',
          'bw']
+
+        cogs = []
         for i in xrange(self.numLawyers):
             suit = DistributedLawbotBossSuitAI.DistributedLawbotBossSuitAI(self.air, None)
             suit.dna = SuitDNA.SuitDNA()
             lawCog = random.choice(lawCogChoices)
+            cogs.append(lawCog)
             suit.dna.newSuit(lawCog)
             suit.setPosHpr(*ToontownGlobals.LawbotBossLawyerPosHprs[i])
             suit.setBoss(self)
             suit.generateWithRequired(self.zoneId)
             self.lawyers.append(suit)
+
+        self.sendUpdate("loadCogs", [cogs])
 
         self.__sendLawyerIds()
         return
@@ -813,15 +819,19 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
          'sd',
          'le',
          'bw']
+        cogs = []
         for i in xrange(amount):
             suit = DistributedLawbotBossSuitAI.DistributedLawbotBossSuitAI(self.air, None)
             suit.dna = SuitDNA.SuitDNA()
             lawCog = random.choice(lawCogChoices)
+            cogs.append(lawCog)
             suit.dna.newSuit(lawCog)
             suit.setPosHpr(*ToontownGlobals.LawbotBossLawyerPosHprs[i])
             suit.setBoss(self)
             suit.generateWithRequired(self.zoneId)
             self.lawyers.append(suit)
+
+        self.sendUpdate("loadCogs", [cogs])
 
         self.__sendLawyerIds()
         return
@@ -857,17 +867,47 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
         taskMgr.doMethodLater(ToontownGlobals.LawbotBossBonusDuration, self.clearBonus, self.uniqueName('clearBonus'))
         self.sendUpdate('enteredBonusState', [])
 
+    def countStuns(self, taskName):
+        curTime = globalClock.getFrameTime()
+        delta = curTime - self.bonusTimeStarted
+        if (ToontownGlobals.LawbotBossBonusDuration - delta) > ToontownGlobals.LawbotBossLawyerStunTime:
+            return
+        count = 0
+        cogs = []
+        for lawyer in self.lawyers:
+            if lawyer.stunned:
+                cogs.append(1)
+                count += 1
+            else:
+                cogs.append(0)
+                #ldna = lawyer.getDNAString()
+                #cogs.append(lawyer.getDNAString()[1:ldna.index("\x00")])
+
+        if count == 1:
+            taskName = self.uniqueName("unstunned" + str(random.randint(0,2000000)))
+            taskMgr.remove(taskName)
+            taskMgr.doMethodLater(0.2, self.countStuns, taskName)
+
+        self.sendUpdate("setStunnedCogs", [cogs])
+
     def areAllLawyersStunned(self):
+        stunned = True
         for lawyer in self.lawyers:
             if not lawyer.stunned:
-                return False
+                stunned = False
 
-        return True
+        self.countStuns("nada brow")
+        taskName = self.uniqueName("unstunned" + str(random.randint(0,2000000)))
+        taskMgr.remove(taskName)
+        taskMgr.doMethodLater(ToontownGlobals.LawbotBossLawyerStunTime, self.countStuns, taskName)
+        return stunned
+
 
     def checkForBonusState(self):
+        check = self.areAllLawyersStunned()
         if self.bonusState:
             return
-        if not self.areAllLawyersStunned():
+        if not check:
             return
         curTime = globalClock.getFrameTime()
         delta = curTime - self.bonusTimeStarted

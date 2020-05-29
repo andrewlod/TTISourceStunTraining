@@ -22,6 +22,7 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
             DistributedSuitBase.DistributedSuitBase.__init__(self, cr)
             self.activeIntervals = {}
             self.boss = None
+            self.stunned = False
             self.fsm = ClassicFSM.ClassicFSM('DistributedLawbotBossSuit', [
                 State.State('Off',
                             self.enterOff,
@@ -373,6 +374,7 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
             del self.activeIntervals[throwName]
 
     def enterStunned(self):
+        self.stunned = True
         stunSequence = MovieUtil.createSuitStunInterval(self, 0, ToontownGlobals.LawbotBossLawyerStunTime)
         seqName = stunSequence.getName()
         stunSequence.append(Func(self.fsm.request, 'neutral'))
@@ -380,5 +382,6 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
         stunSequence.start()
 
     def exitStunned(self):
+        self.stunned = False
         self.prosecuteEvidence.hide()
         self.attackEvidence.hide()

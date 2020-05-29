@@ -5008,6 +5008,16 @@ def inventory(a, b=None, c=None):
         invoker.b_setInventory(inventory.makeNetString())
         return 'Restored {0} Gags to: {1}, {2}'.format(c, targetTrack, maxLevelIndex)
 
+@magicWord(category=CATEGORY_MODERATOR, types=[int])
+def nametagStyle(nametagStyle):
+    currentAccess = spellbook.getInvokerAccess()
+    if nametagStyle >= len(TTLocalizer.NametagFontNames):
+        return 'Invalid nametag style.'
+    target = spellbook.getTarget()
+    target.b_setNametagStyle(nametagStyle)
+    return 'Nametag style set to: %s.' % TTLocalizer.NametagFontNames[nametagStyle]
+
+
 @magicWord(category=CATEGORY_CREATIVE, types=[str, str])
 def dna(part, value):
     """Modify a DNA part on the target."""

@@ -1,0 +1,57 @@
+ToontownStart: Polling for game2 to finish...
+ToontownStart: Game2 is finished.
+ToontownStart: Starting the game.
+ToontownStart: setting default font
+TTLocalizer: Running in language: english
+from toontown.toonbase.TTLocalizerEnglish import *
+OTPLocalizer: Running in language: english
+from otp.otpbase.OTPLocalizerEnglish import *
+ToontownStart: Loading default gui sounds
+ToontownStart: serverVersion:  tti-retro-dev
+Preloading avatars...
+Done preloading avatars.
+{401000001: <toontown.distributed.ToontownDistrict.ToontownDistrict instance at 0x235CC238>}
+entering active SC menu
+local
+1
+Reading DNA file... phase_4/dna/storage.dna
+Reading DNA file... phase_3.5/dna/storage_interior.dna
+OnscreenText.configure: mayChange == 0
+OnscreenText.configure: mayChange == 0
+OnscreenText.configure: mayChange == 0
+OnscreenText.configure: mayChange == 0
+Reading DNA file... phase_5.5/dna/storage_estate.dna
+Reading DNA file... phase_5.5/dna/estate_1.dna
+bobobobobobobo
+-----------Starting closet interaction-----------
+avid: 100000012, gender: f
+current top = 149,27,12,31 and  bot = 54,20,
+topsList = []
+bottomsList = []
+-------------------------------------------------
+OnscreenText.configure: mayChange == 0
+OnscreenText.configure: mayChange == 0
+OnscreenText.configure: mayChange == 0
+OnscreenText.configure: mayChange == 0
+frame rate: 107.3 fps|0.004d|6 avs||342|351||0x10de|0x11c8|461.9MB|519.5MB|8136.0MB|1045|nt.2.6.2|3.601,3.601|4,8 cpus|OpenGL
+ignoring InputState-forward
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\shutil.py", line 239, in rmtree
+    onerror(os.listdir, path, sys.exc_info())
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\shutil.py", line 237, in rmtree
+    names = os.listdir(path)
+WindowsError: [Error 3] O sistema não pode encontrar o caminho especificado: 'c:\\users\\oandre\\appdata\\local\\temp\\tmp0ywtc2/*.*'
+Error in sys.exitfunc:
+Traceback (most recent call last):
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\direct\showbase\ShowBase.py", line 513, in exitfunc
+    self.oldexitfunc()
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\shutil.py", line 239, in rmtree
+    onerror(os.listdir, path, sys.exc_info())
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\shutil.py", line 237, in rmtree
+    names = os.listdir(path)
+WindowsError: [Error 3] O sistema não pode encontrar o caminho especificado: 'c:\\users\\oandre\\appdata\\local\\temp\\tmp0ywtc2/*.*'

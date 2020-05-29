@@ -1,0 +1,33 @@
+ToontownStart: Polling for game2 to finish...
+ToontownStart: Game2 is finished.
+ToontownStart: Starting the game.
+ToontownStart: setting default font
+TTLocalizer: Running in language: english
+from toontown.toonbase.TTLocalizerEnglish import *
+OTPLocalizer: Running in language: english
+from otp.otpbase.OTPLocalizerEnglish import *
+ToontownStart: Loading default gui sounds
+ToontownStart: serverVersion:  tti-retro-dev
+Preloading avatars...
+Done preloading avatars.
+{401000001: <toontown.distributed.ToontownDistrict.ToontownDistrict instance at 0x2376A238>}
+entering active SC menu
+local
+1
+Reading DNA file... phase_4/dna/storage.dna
+Reading DNA file... phase_3.5/dna/storage_interior.dna
+frame rate: 41.4 fps|0.009d|12 avs||329|334||0x10de|0x11c8|494.2MB|552.9MB|8136.0MB|992|nt.2.6.2|3.601,3.601|4,8 cpus|OpenGL
+frame rate: 55.4 fps|0.024d|12 avs||629|634||0x10de|0x11c8|519.9MB|578.7MB|8136.0MB|1010|nt.2.6.2|3.601,3.601|4,8 cpus|OpenGL
+ignoring InputState-forward
+Exception in thread Thread-5907:
+Traceback (most recent call last):
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\threading.py", line 808, in __bootstrap_inner
+    self.run()
+  File "D:\Usuario\Downloads\tts\TTISource\Panda3D-1.9.0\python\lib\threading.py", line 761, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "<string>", line 15, in <lambda>
+  File "<string>", line 14, in test
+  File "otp\chat\TalkAssistant.py", line 615, in sendOpenTalk
+    doId = base.localAvatar.doId
+AttributeError: ToonBase instance has no attribute 'localAvatar'
+

@@ -2639,6 +2639,8 @@ dclass DistributedLawbotBoss : DistributedBossCog {
   hitProsecutionPan() airecv clsend;
   hitChair(uint8, uint8) airecv clsend;
   setLawyerIds(uint32[]) broadcast ram;
+  setStunnedCogs(int8[]) broadcast;
+  loadCogs(string[]) broadcast;
   setTaunt(int8, int8) broadcast;
   toonGotHealed(uint32) broadcast;
   enteredBonusState() broadcast;

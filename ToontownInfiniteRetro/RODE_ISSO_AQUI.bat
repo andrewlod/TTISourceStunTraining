@@ -4,7 +4,7 @@ set /P ttiUsername="Username (DEFAULT: username): " || ^
 set ttiUsername=username
 set ttiPassword=password
 set TTI_PLAYCOOKIE=%ttiUsername%
-set TTI_GAMESERVER=179.181.16.165
+set TTI_GAMESERVER=177.156.117.186
 
 rem Read the contents of PPYTHON_PATH into %PPYTHON_PATH%:
 set /P PPYTHON_PATH=<PPYTHON_PATH
