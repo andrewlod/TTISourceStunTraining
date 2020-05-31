@@ -49,8 +49,8 @@ class ToonBase(OTPBase.OTPBase):
             self.resDict.setdefault(ratio, []).append(res)
 
         # Get the native width, height and ratio:
-        self.nativeWidth = displayInfo.getMaximumWindowWidth()
-        self.nativeHeight = displayInfo.getMaximumWindowHeight()
+        self.nativeWidth = base.win.getXSize()
+        self.nativeHeight = base.win.getYSize()
         self.nativeRatio = round(float(self.nativeWidth) / float(self.nativeHeight), 2)
 
         # Finally, choose the best resolution if we're either fullscreen, or

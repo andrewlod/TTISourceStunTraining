@@ -152,6 +152,14 @@ base.loader = base.loader
 __builtin__.loader = base.loader
 autoRun = ConfigVariableBool('toontown-auto-run', 1)
 
+from direct.filter.FilterManager import FilterManager
+
+manager = FilterManager(base.win, base.cam)
+tex = Texture()
+shader = Shader.load("../RetroResources/phase_14/shaders/test.sha")
+quad = manager.renderSceneInto(colortex=tex)
+quad.setShader(shader)
+quad.setShaderInput("tex", tex)
 '''
 "Injector"
 added by freshollie
