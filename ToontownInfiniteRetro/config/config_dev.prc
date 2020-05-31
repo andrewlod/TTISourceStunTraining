@@ -25,7 +25,7 @@ account-bridge-filename astron/databases/account-bridge.db
 server-force-ssl 0
 server-port 7198
 server-version tti-retro-dev
-server-timezone US/Eastern
+server-timezone US/Eastern/-5
 
 eventlog-host 192.168.1.100
 

@@ -38,7 +38,7 @@ accountdb-type remote
 server-force-ssl 0
 server-port 7198
 server-version SERVER_VERSION
-server-timezone US/Eastern
+server-timezone US/Eastern/-5
 
 # Performance
 hardware-animated-vertices #t

@@ -160,6 +160,8 @@ shader = Shader.load("../RetroResources/phase_14/shaders/test.sha")
 quad = manager.renderSceneInto(colortex=tex)
 quad.setShader(shader)
 quad.setShaderInput("tex", tex)
+
+
 '''
 "Injector"
 added by freshollie

@@ -21,7 +21,9 @@ void fshader(float2 l_texcoord0 : TEXCOORD0,
     // To have a useless filter that outputs the original view
     // without changing anything, just use :
     //o_color  = c;
-
+	float contrast = 1.0;
+	c = saturate((c-0.5)*contrast + 0.5);
     // basic black and white effet
+	
     o_color = float4(c.x*0.5, c.y*0.5, c.z*0.5, 1);
 }

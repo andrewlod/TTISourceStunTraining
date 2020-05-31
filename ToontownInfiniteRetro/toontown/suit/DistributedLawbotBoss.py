@@ -227,12 +227,12 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
 
     def loadCogs(self, cogs):
         if self.stunnedCogsPanel == None:
-            self.stunnedCogsPanel = DirectFrame(frameColor=(0.5,0.5,0.5,1),frameSize=(0.5,1,1.25,-0.45),pos=(1,1,-0.5))
+            self.stunnedCogsPanel = DirectFrame(frameColor=(0.25,0.25,0.25,1),frameSize=(0.5,1,1.25,-0.45),pos=(1,1,-0.5))
             self.stunnedCogsLabel = DirectLabel(text="Stunned cogs", text_fg=VBase4(1, 1, 1, 1), text_align=TextNode.ACenter, relief=None, pos=(1.7,1,0.68), scale=0.05)
         else:
             self.stunnedCogsPanel.remove()
             self.stunnedCogsLabel.remove()
-            self.stunnedCogsPanel = DirectFrame(frameColor=(0.5, 0.5, 0.5, 1), frameSize=(0.5, 1, 1.25, -0.45),
+            self.stunnedCogsPanel = DirectFrame(frameColor=(0.25, 0.25, 0.25, 1), frameSize=(0.5, 1, 1.25, -0.45),
                                                 pos=(1, 1, -0.5))
             self.stunnedCogsLabel = DirectLabel(text="Stunned cogs", text_fg=VBase4(1, 1, 1, 1),
                                                 text_align=TextNode.ACenter, relief=None, pos=(1.7, 1, 0.68),
@@ -1018,7 +1018,7 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
         self.__showWitnessToon()
         if self.stunnedCogsPanel == None:
-            self.stunnedCogsPanel = DirectFrame(frameColor=(0.5,0.5,0.5,1),frameSize=(0.5,1,1.4,-0.4),pos=(1,1,-0.5))
+            self.stunnedCogsPanel = DirectFrame(frameColor=(0.25,0.25,0.25,1),frameSize=(0.5,1,1.4,-0.4),pos=(1,1,-0.5))
             self.stunnedCogsLabel = DirectLabel(text="Stunned cogs", text_fg=VBase4(1, 1, 1, 1), text_align=TextNode.ACenter, relief=None, pos=(1.7,1,0.85), scale=0.05)
         #diffSettings = ToontownGlobals.LawbotBossDifficultySettings[self.battleDifficulty]
         #if diffSettings[4]:

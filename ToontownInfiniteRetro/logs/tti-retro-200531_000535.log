@@ -1,0 +1,190 @@
+ToontownStart: Polling for game2 to finish...
+ToontownStart: Game2 is finished.
+ToontownStart: Starting the game.
+ToontownStart: setting default font
+TTLocalizer: Running in language: english
+from toontown.toonbase.TTLocalizerEnglish import *
+OTPLocalizer: Running in language: english
+from otp.otpbase.OTPLocalizerEnglish import *
+ToontownStart: Loading default gui sounds
+ToontownStart: serverVersion:  tti-retro-dev
+Preloading avatars...
+Done preloading avatars.
+{401000001: <toontown.distributed.ToontownDistrict.ToontownDistrict instance at 0x2634D120>}
+entering active SC menu
+local
+2
+Reading DNA file... phase_4/dna/storage.dna
+Reading DNA file... phase_3.5/dna/storage_interior.dna
+Traceback (most recent call last):
+  File "D:\Panda3D-1.10.0\direct\distributed\ConnectionRepository.py", line 613, in readerPollUntilEmpty
+    while self.readerPollOnce():
+  File "D:\Panda3D-1.10.0\direct\distributed\ConnectionRepository.py", line 620, in readerPollOnce
+    self.handleDatagram(self.private__di)
+  File "otp\distributed\OTPClientRepository.py", line 1873, in handleDatagram
+    self.handler(msgType, di)
+  File "toontown\hood\QuietZoneState.py", line 152, in handleWaitForQuietZoneResponse
+    base.cr.handlePlayGame(msgType, di)
+  File "otp\distributed\OTPClientRepository.py", line 1488, in handlePlayGame
+    self.handleMessageType(msgType, di)
+  File "otp\distributed\OTPClientRepository.py", line 1773, in handleMessageType
+    self.gotInterestDoneMessage(di)
+  File "otp\distributed\OTPClientRepository.py", line 1794, in gotInterestDoneMessage
+    self.handleInterestDoneMessage(di)
+  File "D:\Panda3D-1.10.0\direct\distributed\DoInterestManager.py", line 618, in handleInterestDoneMessage
+    messenger.send(event)
+  File "D:\Panda3D-1.10.0\direct\showbase\Messenger.py", line 326, in send
+    self.__dispatch(acceptorDict, event, sentArgs, foundWatch)
+  File "D:\Panda3D-1.10.0\direct\showbase\Messenger.py", line 411, in __dispatch
+    method (*(extraArgs + sentArgs))
+  File "toontown\distributed\ToontownClientRepository.py", line 991, in _handleEmuSetZoneDone
+    messenger.send(event)
+  File "D:\Panda3D-1.10.0\direct\showbase\Messenger.py", line 326, in send
+    self.__dispatch(acceptorDict, event, sentArgs, foundWatch)
+  File "D:\Panda3D-1.10.0\direct\showbase\Messenger.py", line 411, in __dispatch
+    method (*(extraArgs + sentArgs))
+  File "toontown\hood\QuietZoneState.py", line 195, in _handleQuietZoneComplete
+    self.fsm.request('waitForZoneRedirect')
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 284, in request
+    exitArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 231, in __transition
+    self.__enter(aState, enterArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 217, in __enter
+    aState.enter(argList)
+  File "D:\Panda3D-1.10.0\direct\fsm\State.py", line 202, in enter
+    apply(self.__enterFunc, argList)
+  File "toontown\hood\QuietZoneState.py", line 236, in enterWaitForZoneRedirect
+    self.fsm.request('waitForSetZoneResponse')
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 284, in request
+    exitArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 231, in __transition
+    self.__enter(aState, enterArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 217, in __enter
+    aState.enter(argList)
+  File "D:\Panda3D-1.10.0\direct\fsm\State.py", line 202, in enter
+    apply(self.__enterFunc, argList)
+  File "toontown\hood\QuietZoneState.py", line 262, in enterWaitForSetZoneResponse
+    self.fsm.request('waitForSetZoneComplete')
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 284, in request
+    exitArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 231, in __transition
+    self.__enter(aState, enterArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 217, in __enter
+    aState.enter(argList)
+  File "D:\Panda3D-1.10.0\direct\fsm\State.py", line 202, in enter
+    apply(self.__enterFunc, argList)
+  File "toontown\hood\QuietZoneState.py", line 300, in enterWaitForSetZoneComplete
+    messenger.send(self.getQuietZoneLeftEvent())
+  File "D:\Panda3D-1.10.0\direct\showbase\Messenger.py", line 326, in send
+    self.__dispatch(acceptorDict, event, sentArgs, foundWatch)
+  File "D:\Panda3D-1.10.0\direct\showbase\Messenger.py", line 411, in __dispatch
+    method (*(extraArgs + sentArgs))
+  File "toontown\distributed\PlayGame.py", line 288, in handleLeftQuietZone
+    self.fsm.request(hoodState, [status])
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 284, in request
+    exitArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 231, in __transition
+    self.__enter(aState, enterArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 217, in __enter
+    aState.enter(argList)
+  File "D:\Panda3D-1.10.0\direct\fsm\State.py", line 202, in enter
+    apply(self.__enterFunc, argList)
+  File "toontown\distributed\PlayGame.py", line 379, in enterLawbotHQ
+    self.hood.enter(requestStatus)
+  File "toontown\hood\LawbotHQ.py", line 27, in enter
+    CogHood.CogHood.enter(self, *args)
+  File "toontown\hood\Hood.py", line 42, in enter
+    self.fsm.request(requestStatus['loader'], [requestStatus])
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 284, in request
+    exitArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 231, in __transition
+    self.__enter(aState, enterArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 217, in __enter
+    aState.enter(argList)
+  File "D:\Panda3D-1.10.0\direct\fsm\State.py", line 202, in enter
+    apply(self.__enterFunc, argList)
+  File "toontown\hood\CogHood.py", line 39, in enterCogHQLoader
+    self.loader.enter(requestStatus)
+  File "toontown\coghq\CogHQLoader.py", line 62, in enter
+    self.fsm.request(requestStatus['where'], [requestStatus])
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 284, in request
+    exitArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 231, in __transition
+    self.__enter(aState, enterArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 217, in __enter
+    aState.enter(argList)
+  File "D:\Panda3D-1.10.0\direct\fsm\State.py", line 202, in enter
+    apply(self.__enterFunc, argList)
+  File "toontown\coghq\CogHQLoader.py", line 122, in enterCogHQExterior
+    self.enterPlace(requestStatus)
+  File "toontown\coghq\CogHQLoader.py", line 91, in enterPlace
+    self.place.enter(requestStatus)
+  File "toontown\coghq\LawbotHQExterior.py", line 17, in enter
+    CogHQExterior.CogHQExterior.enter(self, requestStatus)
+  File "toontown\coghq\CogHQExterior.py", line 76, in enter
+    self.fsm.request(how, [requestStatus])
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 284, in request
+    exitArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 231, in __transition
+    self.__enter(aState, enterArgList)
+  File "D:\Panda3D-1.10.0\direct\fsm\ClassicFSM.py", line 217, in __enter
+    aState.enter(argList)
+  File "D:\Panda3D-1.10.0\direct\fsm\State.py", line 202, in enter
+    apply(self.__enterFunc, argList)
+  File "toontown\coghq\CogHQExterior.py", line 101, in enterTeleportIn
+    BattlePlace.BattlePlace.enterTeleportIn(self, requestStatus)
+  File "toontown\hood\Place.py", line 703, in enterTeleportIn
+    self._tiToken = self.addSetZoneCompleteCallback(Functor(self._placeTeleportInPostZoneComplete, requestStatus), 100)
+  File "toontown\hood\Place.py", line 105, in addSetZoneCompleteCallback
+    return qzsd.addSetZoneCompleteCallback(callback, priority)
+  File "toontown\hood\QuietZoneState.py", line 125, in addSetZoneCompleteCallback
+    return self._setZoneCompleteCallbacks.add(callback, priority)
+  File "D:\Panda3D-1.10.0\direct\showbase\PythonUtil.py", line 194, in add
+    bisect.insort(self._callbacks, item)
+NameError: global name 'bisect' is not defined
+Traceback (most recent call last):
+  File "D:\Panda3D-1.10.0\python\lib\runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "D:\Panda3D-1.10.0\python\lib\runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "D:\Usuario\Downloads\tts\TTISource\ToontownInfiniteRetro\toontown\toonbase\ToontownStart.py", line 254, in <module>
+    print PythonUtil.describeException()
+AttributeError: 'module' object has no attribute 'describeException'
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "D:\Panda3D-1.10.0\python\lib\atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "D:\Panda3D-1.10.0\direct\showbase\ShowBase.py", line 53, in exitfunc
+    builtins.base.destroy()
+  File "D:\Panda3D-1.10.0\direct\showbase\ShowBase.py", line 514, in destroy
+    self.loader.destroy()
+  File "toontown\toonbase\ToontownLoader.py", line 18, in destroy
+    self.loadingScreen.destroy()
+  File "toontown\toontowngui\ToontownLoadingScreen.py", line 43, in destroy
+    self.toon.delete()
+  File "toontown\toon\Toon.py", line 614, in delete
+    Avatar.Avatar.delete(self)
+  File "otp\avatar\Avatar.py", line 96, in delete
+    self.nametag.destroy()
+  File "otp\nametag\NametagGroup.py", line 57, in destroy
+    taskMgr.remove(self.tickTask)
+NameError: global name 'taskMgr' is not defined
+Error in sys.exitfunc:
+Traceback (most recent call last):
+  File "D:\Panda3D-1.10.0\python\lib\atexit.py", line 24, in _run_exitfuncs
+    func(*targs, **kargs)
+  File "D:\Panda3D-1.10.0\direct\showbase\ShowBase.py", line 53, in exitfunc
+    builtins.base.destroy()
+  File "D:\Panda3D-1.10.0\direct\showbase\ShowBase.py", line 514, in destroy
+    self.loader.destroy()
+  File "toontown\toonbase\ToontownLoader.py", line 18, in destroy
+    self.loadingScreen.destroy()
+  File "toontown\toontowngui\ToontownLoadingScreen.py", line 43, in destroy
+    self.toon.delete()
+  File "toontown\toon\Toon.py", line 614, in delete
+    Avatar.Avatar.delete(self)
+  File "otp\avatar\Avatar.py", line 96, in delete
+    self.nametag.destroy()
+  File "otp\nametag\NametagGroup.py", line 57, in destroy
+    taskMgr.remove(self.tickTask)
+NameError: global name 'taskMgr' is not defined

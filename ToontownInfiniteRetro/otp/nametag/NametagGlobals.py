@@ -1,3 +1,6 @@
+from direct.filter.FilterManager import FilterManager
+from pandac.PandaModules import *
+
 camera = None
 def setCamera(cam):
     global camera

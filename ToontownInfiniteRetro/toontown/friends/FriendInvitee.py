@@ -33,7 +33,7 @@ class FriendInvitee(ToonHeadDialog.ToonHeadDialog):
          ('style', style, None),
          ('buttonTextList', buttonTextList, None),
          ('command', command, None),
-         ('image_color', (1.0, 0.89, 0.77, 1.0), None),
+         ('image_color', (0.5, 0.45, 0.38, 1.0), None),
          ('geom_scale', 0.2, None),
          ('geom_pos', (-0.1, 0, -0.025), None),
          ('pad', (0.075, 0.075), None),
